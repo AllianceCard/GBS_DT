@@ -1,32 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Interno</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIA | Portal Interno</title>
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        iframe {
-            border: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+html,body{
+    width:100%;
+    height:100%;
+    font-family:Segoe UI, Arial, sans-serif;
+    background:#f5f7fa;
+}
+
+.top-banner{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:60px;
+    background:#fff8e1;
+    border-bottom:1px solid #ffe082;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 20px;
+    z-index:9999;
+}
+
+.banner-text{
+    color:#5f4b00;
+    font-size:14px;
+}
+
+.button-group{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    border:none;
+    border-radius:6px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:600;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.btn-download{
+    background:#0d6efd;
+    color:white;
+}
+
+.btn-download:hover{
+    background:#0b5ed7;
+}
+
+.btn-full{
+    background:#198754;
+    color:white;
+}
+
+.btn-full:hover{
+    background:#157347;
+}
+
+.container{
+    margin-top:60px;
+    width:100%;
+    height:calc(100vh - 60px);
+}
+
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+</style>
 </head>
 <body>
 
+<div class="top-banner">
+
+    <div class="banner-text">
+        ⚠️ Caso a página abaixo seja exibida como <strong>"Não Segura"</strong>,
+        faça o download e instale o certificado corporativo antes de prosseguir.
+    </div>
+
+    <div class="button-group">
+
+        <a
+            class="btn btn-download"
+            href="certificado.cer"
+            download>
+       full"
+            onclick="abrirTelaCheia()">
+            Abrir em Tela Cheia
+        </button>
+
+    </div>
+
+</div>
+
+<div class="container">
+
     <iframe
-        src="http://hor8cyf334.amer.iberdrola.local:80"
-        title="Portal Interno">
+        id="portalFrame"
+        src="http://hor8cyf334.amer.iberdrola.local">
     </iframe>
+
+</div>
+
+<script>
+
+function abrirTelaCheia() {
+
+    window.open(
+        "http://hor8cyf334.amer.iberdrola.local",
+        "_blank"
+    );
+
+}
+
+</script>
 
 </body>
 </html>
