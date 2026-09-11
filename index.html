@@ -1,141 +1,321 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CIA | Portal Interno</title>
+    <meta charset="UTF-8">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-html,body{
-    width:100%;
-    height:100%;
-    font-family:Segoe UI, Arial, sans-serif;
-    background:#f5f7fa;
-}
+    <title>CIA | Portal Interno</title>
 
-.top-banner{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    height:60px;
-    background:#fff8e1;
-    border-bottom:1px solid #ffe082;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 20px;
-    z-index:9999;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.banner-text{
-    color:#5f4b00;
-    font-size:14px;
-}
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f7fa;
+        }
 
-.button-group{
-    display:flex;
-    gap:10px;
-}
+        .top-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            min-height: 60px;
+            background: #fff8e1;
+            border-bottom: 1px solid #ffe082;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 10px 20px;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
 
-.btn{
-    border:none;
-    border-radius:6px;
-    padding:10px 16px;
-    cursor:pointer;
-    font-weight:600;
-    text-decoration:none;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
+        .banner-text {
+            color: #5f4b00;
+            font-size: 14px;
+            line-height: 1.4;
+        }
 
-.btn-download{
-    background:#0d6efd;
-    color:white;
-}
+        .button-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
 
-.btn-download:hover{
-    background:#0b5ed7;
-}
+        .btn {
+            min-height: 40px;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition:
+                background-color 0.2s ease,
+                transform 0.1s ease;
+        }
 
-.btn-full{
-    background:#198754;
-    color:white;
-}
+        .btn:hover {
+            transform: translateY(-1px);
+        }
 
-.btn-full:hover{
-    background:#157347;
-}
+        .btn:active {
+            transform: translateY(0);
+        }
 
-.container{
-    margin-top:60px;
-    width:100%;
-    height:calc(100vh - 60px);
-}
+        .btn-download {
+            background: #0d6efd;
+            color: #ffffff;
+        }
 
-iframe{
-    width:100%;
-    height:100%;
-    border:none;
-}
-</style>
+        .btn-download:hover {
+            background: #0b5ed7;
+        }
+
+        .btn-copy {
+            background: #6c757d;
+            color: #ffffff;
+        }
+
+        .btn-copy:hover {
+            background: #5c636a;
+        }
+
+        .btn-full {
+            background: #198754;
+            color: #ffffff;
+        }
+
+        .btn-full:hover {
+            background: #157347;
+        }
+
+        .container {
+            padding-top: 60px;
+            width: 100%;
+            height: 100vh;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #ffffff;
+        }
+
+        .notification {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            max-width: 380px;
+            padding: 14px 18px;
+            border-radius: 8px;
+            background: #212529;
+            color: #ffffff;
+            font-size: 14px;
+            line-height: 1.4;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease,
+                transform 0.25s ease;
+            z-index: 10000;
+        }
+
+        .notification.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .top-banner {
+                position: relative;
+                flex-direction: column;
+                align-items: stretch;
+                min-height: auto;
+            }
+
+            .button-group {
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                flex: 1;
+            }
+
+            .container {
+                padding-top: 0;
+                height: calc(100vh - 160px);
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="top-banner">
+    <div class="top-banner">
 
-    <div class="banner-text">
-        ⚠️ Caso a página abaixo seja exibida como <strong>"Não Segura"</strong>,
-        faça o download e instale o certificado corporativo antes de prosseguir.
+        <div class="banner-text">
+            ⚠️ Caso a página abaixo seja exibida como
+            <strong>"Não Segura"</strong>, faça o download e instale o
+            certificado corporativo antes de prosseguir.
+        </div>
+
+        <div class="button-group">
+
+            https://raw.githubusercontent.com/AllianceCard/GBS_DT/refs/heads/main/certificado.cer
+                🔐 Baixar Certificado
+            </a>
+
+            <button
+                type="button"
+                class="btn btn-copy"
+                onclick="copiarLinkCertificado()"
+                title="Copiar o endereço do certificado"
+            >
+                📋 Copiar Link
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-full"
+                onclick="abrirTelaCheia()"
+                title="Abrir o portal em uma nova janela"
+            >
+                🚀 Abrir em Tela Cheia
+            </button>
+
+        </div>
+
     </div>
 
-    <div class="button-group">
+    <div class="container">
 
-        <a
-            href="https://github.com/AllianceCard/GBS_DT/raw/refs/heads/main/certificado.cer"
-            target="_blank"
-            class="btn btn-download">
-            🔐 Baixar Certificado
-        </a>
-
-        <button
-            class="btn btn-full"
-            onclick="abrirTelaCheia()">
-            🚀 Abrir em Tela Cheia
-        </button>
+        <iframe
+            id="portalFrame"
+            src="http://hor8cyf334.amer.iberdrola.local"
+            title="Portal interno CIA"
+            allowfullscreen
+        ></iframe>
 
     </div>
 
-</div>
+    <div
+        id="notification"
+        class="notification"
+        role="status"
+        aria-live="polite"
+    ></div>
 
-<div class="container">
+    <script>
+        const URL_CERTIFICADO =
+            "https://raw.githubusercontent.com/AllianceCard/GBS_DT/refs/heads/main/certificado.cer";
 
-    <iframe
-        id="portalFrame"
-        src="http://hor8cyf334.amer.iberdrola.local">
-    </iframe>
+        const URL_PORTAL =
+            "http://hor8cyf334.amer.iberdrola.local";
 
-</div>
+        function abrirTelaCheia() {
+            const novaJanela = window.open(
+                URL_PORTAL,
+                "_blank",
+                "noopener,noreferrer"
+            );
 
-<script>
+            if (!novaJanela) {
+                mostrarNotificacao(
+                    "O navegador bloqueou a nova janela. Permita pop-ups para este site."
+                );
+            }
+        }
 
-function abrirTelaCheia() {
+        async function copiarLinkCertificado() {
+            try {
+                await navigator.clipboard.writeText(URL_CERTIFICADO);
 
-    window.open(
-        "http://hor8cyf334.amer.iberdrola.local",
-        "_blank"
-    );
+                mostrarNotificacao(
+                    "Link copiado. Caso o Edge bloqueie o botão de download, cole o endereço em uma nova guia."
+                );
+            } catch (erro) {
+                copiarLinkModoAlternativo();
+            }
+        }
 
-}
+        function copiarLinkModoAlternativo() {
+            const campoTemporario = document.createElement("textarea");
 
-</script>
+            campoTemporario.value = URL_CERTIFICADO;
+            campoTemporario.setAttribute("readonly", "");
+            campoTemporario.style.position = "fixed";
+            campoTemporario.style.opacity = "0";
+
+            document.body.appendChild(campoTemporario);
+
+            campoTemporario.select();
+            campoTemporario.setSelectionRange(
+                0,
+                campoTemporario.value.length
+            );
+
+            const copiado = document.execCommand("copy");
+
+            document.body.removeChild(campoTemporario);
+
+            if (copiado) {
+                mostrarNotificacao(
+                    "Link copiado. Cole o endereço em uma nova guia do Edge."
+                );
+            } else {
+                window.prompt(
+                    "Copie o endereço do certificado:",
+                    URL_CERTIFICADO
+                );
+            }
+        }
+
+        function mostrarNotificacao(mensagem) {
+            const notification =
+                document.getElementById("notification");
+
+            notification.textContent = mensagem;
+            notification.classList.add("show");
+
+            window.clearTimeout(
+                mostrarNotificacao.timeout
+            );
+
+            mostrarNotificacao.timeout = window.setTimeout(
+                function () {
+                    notification.classList.remove("show");
+                },
+                5000
+            );
+        }
+    </script>
 
 </body>
 </html>
