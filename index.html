@@ -182,7 +182,7 @@
 
         <div class="banner-text">
             ⚠️ Caso a página abaixo seja exibida como
-            <strong>"Não Segura"</strong>, faça o download e instale o
+            <strong>"Não Segura"</strong>, faça o download, descompacte e instale o
             certificado corporativo antes de prosseguir.
         </div>
 
@@ -197,15 +197,6 @@
                 🔐 Baixar Certificado
             </a>
 
-
-            <button
-                type="button"
-                class="btn btn-copy"
-                onclick="copiarLinkCertificado()"
-                title="Copiar o endereço do certificado"
-            >
-                📋 Copiar Link
-            </button>
 
             <button
                 type="button"
@@ -259,17 +250,7 @@
             }
         }
 
-        async function copiarLinkCertificado() {
-            try {
-                await navigator.clipboard.writeText(URL_CERTIFICADO);
 
-                mostrarNotificacao(
-                    "Link copiado. Caso o Edge bloqueie o botão de download, cole o endereço em uma nova guia."
-                );
-            } catch (erro) {
-                copiarLinkModoAlternativo();
-            }
-        }
 
         function copiarLinkModoAlternativo() {
             const campoTemporario = document.createElement("textarea");
