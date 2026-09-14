@@ -178,7 +178,7 @@
 
 <body>
 
-    <div class="top-banner">
+    <div id="topBanner" class="top-banner">
 
         <div class="banner-text">
             ⚠️ Caso a página abaixo não seja exibida, faça o download, descompacte e instale o certificado corporativo antes de prosseguir.
@@ -235,17 +235,12 @@
             "https://hor8cyf334.amer.iberdrola.local:80";
 
         function abrirTelaCheia() {
-            const novaJanela = window.open(
-                URL_PORTAL,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
-            if (!novaJanela) {
-                mostrarNotificacao(
-                    "O navegador bloqueou a nova janela. Permita pop-ups para este site."
-                );
-            }
+            const banner = document.getElementById("topBanner");
+            const container = document.querySelector(".container");
+        
+            banner.style.display = "none";
+            container.style.paddingTop = "0";
+            container.style.height = "100vh";
         }
 
 
